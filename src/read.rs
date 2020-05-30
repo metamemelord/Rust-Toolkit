@@ -18,7 +18,7 @@ macro_rules! rv {
             .expect("Error reading line");
         let $var: Vec<$type> = buf
             .trim_end()
-            .split_ascii_whitespace()
+            .split_whitespace()
             .map(|x| x.parse::<$type>().unwrap())
             .collect();
     };
@@ -42,7 +42,7 @@ pub fn read_vec<T: std::str::FromStr>(t: &mut Vec<T>) {
         .expect("Error reading line");
     *t = buf
         .trim_end()
-        .split_ascii_whitespace()
+        .split_whitespace()
         .map(|x| match x.trim().parse::<T>() {
             Ok(v) => Some(v),
             Err(_) => None,
